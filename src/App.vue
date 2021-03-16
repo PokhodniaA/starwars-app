@@ -1,13 +1,15 @@
 <template>
   <v-app>
-    <v-main> <h1>hello</h1> </v-main>
+    <Main />
   </v-app>
 </template>
 
 <script>
+import Main from "@/components/Main.vue";
+
 export default {
   name: "App",
 
-  components: {},
+  components: { Main },
 };
 </script>
