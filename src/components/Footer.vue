@@ -1,6 +1,6 @@
 <template>
-  <footer app class="footer">
-    <v-footer absolute :height="footerHeight">
+  <footer class="footer">
+    <v-footer app absolute :height="footerHeight">
       <v-container
         class="footer__container d-flex flex-column justify-space-between"
       >

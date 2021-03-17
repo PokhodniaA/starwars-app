@@ -3,7 +3,7 @@
     <Navbar />
 
     <v-main>
-      <Cards />
+      <Cards :padawans="padawans" />
     </v-main>
 
     <Footer />

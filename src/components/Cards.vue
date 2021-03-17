@@ -3,6 +3,8 @@
     <!-- Поменять размер текста -->
     <h4 class="text-h4 mt-13">Cards</h4>
 
+    <!-- Toolbar -->
+
     <v-row class="cards__toolbar">
       <!-- Eye color -->
 
@@ -94,14 +96,34 @@
         </v-list>
       </v-menu>
     </v-row>
+
+    <!-- Cards -->
+
+    <v-row class="mt-12">
+      <v-col
+        cols="12"
+        md="6"
+        class="pa-2"
+        v-for="padawan in padawans"
+        :key="padawan.name"
+      >
+        <Card :padawan="padawan" />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
+import Card from "./Card.vue";
+
 export default {
   data: () => ({
     test: [1, 2, 3, 4, 5],
   }),
+  props: {
+    padawans: Array,
+  },
+  components: { Card },
 };
 </script>
 
