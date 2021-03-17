@@ -1,11 +1,19 @@
 <template>
   <div class="main">
     <Navbar />
+
+    <v-main>
+      <Cards />
+    </v-main>
+
+    <Footer />
   </div>
 </template>
 
 <script>
 import Navbar from "./Navbar.vue";
+import Cards from "./Cards";
+import Footer from "./Footer.vue";
 
 export default {
   data: () => ({
@@ -14,6 +22,8 @@ export default {
   methods: {},
   components: {
     Navbar,
+    Footer,
+    Cards,
   },
   async created() {
     try {

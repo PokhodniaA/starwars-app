@@ -1,6 +1,7 @@
 <template>
-  <nav class="navbar">
-    <v-app-bar app flat :color="appBar.color" :height="appBar.height">
+  <nav class="navbar" app>
+    <!-- Убрать пэдинги боковые-->
+    <v-app-bar flat :color="appBar.color" :height="appBar.height">
       <v-container>
         <v-row align="center">
           <v-app-bar-title>
@@ -75,7 +76,7 @@
       <v-list>
         <v-list-item link>
           <v-list-item-content>
-            <v-list-item-title @click="test" class="text-capitalize">{{
+            <v-list-item-title class="text-capitalize">{{
               currentLang.title
             }}</v-list-item-title>
           </v-list-item-content>
@@ -98,26 +99,21 @@ export default {
     currentLang: { title: "en" },
     drawer: false,
   }),
-  methods: {
-    test() {
-      console.log("test");
-    },
-  },
   computed: {
     appBar() {
       const breakpoint = this.$vuetify.breakpoint.name;
       console.log(this.$vuetify);
-      return breakpoint == "xs"
+      return breakpoint === "xs"
         ? { color: "primary", height: 62 }
         : { color: "secondary", height: 80 };
     },
     logo() {
       const breakpoint = this.$vuetify.breakpoint.name;
-      return breakpoint == "xs" ? { width: "82px" } : { width: "" };
+      return breakpoint === "xs" ? { width: "82px" } : { width: "" };
     },
     singInBtn() {
       const breakpoint = this.$vuetify.breakpoint.name;
-      return breakpoint == "xs"
+      return breakpoint === "xs"
         ? { depress: false, text: true, width: "", color: "text" }
         : { depress: true, text: false, width: "162", color: "accent" };
     },
