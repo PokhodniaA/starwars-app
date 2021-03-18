@@ -2,7 +2,7 @@
   <div class="main">
     <Navbar />
 
-    <v-main>
+    <v-main v-if="padawans.length">
       <Cards :padawans="padawans" />
     </v-main>
 
@@ -25,7 +25,7 @@ export default {
     Footer,
     Cards,
   },
-  async created() {
+  async mounted() {
     try {
       const padawans = await (
         await fetch("https://swapi.dev/api/people/")
@@ -33,7 +33,7 @@ export default {
 
       this.padawans = padawans.results;
 
-      console.log(this.padawans);
+      console.log(this.padawans, "padawans");
     } catch (error) {
       alert("Sorry, server don't work =(");
     }

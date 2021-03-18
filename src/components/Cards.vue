@@ -52,23 +52,23 @@ export default {
     const height = this.filter.height;
     const age = this.filter.age;
 
+    const ages = [];
+    const heights = [];
+
     this.padawans.forEach((padawan) => {
-      const padawanHeight = parseInt(padawan.height) || 0;
-      const padawanAge = parseInt(padawan.birth_year) || 0;
-
-      if (padawanHeight > height.max || height.max === null) {
-        height.max = padawanHeight;
-      } else if (padawanHeight < height.min || height.min === null) {
-        height.min = padawanHeight;
-      }
-
-      if (padawanAge > age.max || height.max === null) {
-        age.max = padawanAge;
-      } else if (padawanAge < age.min || age.min === null) {
-        age.min = padawanAge;
-      }
+      heights.push(parseInt(padawan.height) || 0);
+      ages.push(parseInt(padawan.birth_year) || 0);
     });
 
+    // Max and min heights of padawans
+    height.max = Math.max.apply(null, heights);
+    height.min = Math.min.apply(null, heights);
+
+    // Max and min ages of padawans
+    age.max = Math.max.apply(null, ages);
+    age.min = Math.min.apply(null, ages);
+
+    // Range of params padawans.
     (height.range[0] = height.min), (height.range[1] = height.max);
     (age.range[0] = age.min), (age.range[1] = age.max);
   },

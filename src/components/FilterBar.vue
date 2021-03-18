@@ -151,9 +151,6 @@ export default {
     padawans: Array,
     filter: Object,
   },
-  mounted() {
-    console.log(this.padawans, "padawans mounted");
-  },
 };
 </script>
 
