@@ -14,7 +14,7 @@
 
           <v-spacer></v-spacer>
 
-          <v-menu offset-y open-on-hover>
+          <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
               <v-btn
                 text
@@ -126,5 +126,9 @@ export default {
   &__buttons {
     font-size: 14px;
   }
+}
+
+.v-menu__content {
+  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.04) !important;
 }
 </style>

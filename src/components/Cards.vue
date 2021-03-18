@@ -5,97 +5,7 @@
 
     <!-- Toolbar -->
 
-    <v-row class="cards__toolbar">
-      <!-- Eye color -->
-
-      <v-menu offset-y open-on-hover>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            text
-            v-on="on"
-            v-bind="attrs"
-            class="mr-14 px-0 navbar__buttons text-capitalize font-weight-regular d-none d-sm-flex"
-          >
-            <span color="text" class="text-none">Eye color</span>
-            <v-icon color="text" size="14">mdi-chevron-down</v-icon>
-          </v-btn>
-        </template>
-
-        <v-list>
-          <v-list-item v-for="(lang, index) in test" :key="index">
-            <v-list-item-title>{{ lang }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-
-      <!-- Height -->
-
-      <v-menu offset-y open-on-hover>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            text
-            v-on="on"
-            v-bind="attrs"
-            class="mr-14 px-0 navbar__buttons text-capitalize font-weight-regular d-none d-sm-flex"
-          >
-            <span color="text" class="text-none">Height</span>
-            <v-icon color="text" size="14">mdi-chevron-down</v-icon>
-          </v-btn>
-        </template>
-
-        <v-list>
-          <v-list-item v-for="(lang, index) in test" :key="index">
-            <v-list-item-title>{{ lang }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-
-      <!-- Age -->
-
-      <v-menu offset-y open-on-hover>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            text
-            v-on="on"
-            v-bind="attrs"
-            class="px-0 navbar__buttons text-capitalize font-weight-regular d-none d-sm-flex"
-          >
-            <span color="text" class="text-none">Age</span>
-            <v-icon color="text" size="14">mdi-chevron-down</v-icon>
-          </v-btn>
-        </template>
-
-        <v-list>
-          <v-list-item v-for="(lang, index) in test" :key="index">
-            <v-list-item-title>{{ lang }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-
-      <v-spacer></v-spacer>
-
-      <!-- Sort by -->
-
-      <v-menu offset-y open-on-hover>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            text
-            v-on="on"
-            v-bind="attrs"
-            class="px-0 navbar__buttons text-capitalize font-weight-regular d-none d-sm-flex"
-          >
-            <span color="text" class="text-none">Sort by</span>
-            <v-icon color="text" size="14">mdi-chevron-down</v-icon>
-          </v-btn>
-        </template>
-
-        <v-list>
-          <v-list-item v-for="(lang, index) in test" :key="index">
-            <v-list-item-title>{{ lang }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-    </v-row>
+    <FilterBar class="cards__toolbar" :filter="filter" :padawans="padawans" />
 
     <!-- Cards -->
 
@@ -115,15 +25,53 @@
 
 <script>
 import Card from "./Card.vue";
+import FilterBar from "./FilterBar.vue";
 
 export default {
   data: () => ({
-    test: [1, 2, 3, 4, 5],
+    filter: {
+      eyes: "",
+      height: {
+        max: null,
+        min: null,
+        range: [],
+      },
+      age: {
+        max: null,
+        min: null,
+        range: [],
+      },
+    },
   }),
+  computed: {},
   props: {
     padawans: Array,
   },
-  components: { Card },
+  components: { Card, FilterBar },
+  mounted() {
+    const height = this.filter.height;
+    const age = this.filter.age;
+
+    this.padawans.forEach((padawan) => {
+      const padawanHeight = parseInt(padawan.height) || 0;
+      const padawanAge = parseInt(padawan.birth_year) || 0;
+
+      if (padawanHeight > height.max || height.max === null) {
+        height.max = padawanHeight;
+      } else if (padawanHeight < height.min || height.min === null) {
+        height.min = padawanHeight;
+      }
+
+      if (padawanAge > age.max || height.max === null) {
+        age.max = padawanAge;
+      } else if (padawanAge < age.min || age.min === null) {
+        age.min = padawanAge;
+      }
+    });
+
+    (height.range[0] = height.min), (height.range[1] = height.max);
+    (age.range[0] = age.min), (age.range[1] = age.max);
+  },
 };
 </script>
 
