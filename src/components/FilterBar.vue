@@ -16,7 +16,11 @@
       </template>
 
       <v-list width="101">
-        <v-list-item v-for="(color, index) in getEyesColor" :key="index">
+        <v-list-item
+          v-for="(color, index) in getEyesColor"
+          :key="index"
+          @click="filterByColor(color)"
+        >
           <v-list-item-title class="filters__item">{{
             color
           }}</v-list-item-title>
@@ -140,6 +144,13 @@
 
 <script>
 export default {
+  methods: {
+    filterByColor(color) {
+      const filterColor = this.filter.eyes;
+
+      this.filter.eyes = filterColor == color ? "" : color;
+    },
+  },
   computed: {
     getEyesColor() {
       const eyes = new Set();

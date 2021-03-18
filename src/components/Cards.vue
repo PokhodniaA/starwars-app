@@ -14,7 +14,7 @@
         cols="12"
         md="6"
         class="pa-2"
-        v-for="padawan in padawans"
+        v-for="padawan in filtredPadawans"
         :key="padawan.name"
       >
         <Card :padawan="padawan" />
@@ -43,12 +43,35 @@ export default {
       },
     },
   }),
-  computed: {},
+  computed: {
+    filtredPadawans() {
+      const eyes = this.filter.eyes;
+      const height = this.filter.height;
+      const age = this.filter.age;
+
+      const maxHeight = height.range[1],
+        minHeight = height.range[0];
+
+      const maxAge = age.range[1],
+        minAge = age.range[0];
+
+      return this.padawans.filter((padawan) => {
+        const birthYear = parseInt(padawan.birth_year) || 0;
+
+        const eyesFilter = eyes ? padawan.eye_color == eyes : true;
+        const heightFilter =
+          padawan.height <= maxHeight && padawan.height >= minHeight;
+        const ageFilter = birthYear <= maxAge && birthYear >= minAge;
+
+        return eyesFilter && heightFilter && ageFilter;
+      });
+    },
+  },
   props: {
     padawans: Array,
   },
   components: { Card, FilterBar },
-  mounted() {
+  created() {
     const height = this.filter.height;
     const age = this.filter.age;
 
