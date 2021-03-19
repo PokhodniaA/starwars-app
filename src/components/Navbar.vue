@@ -97,7 +97,7 @@ export default {
   data: () => ({
     languages: [{ title: "en" }, { title: "ru" }, { title: "ua" }],
     currentLang: { title: "en" },
-    drawer: false,
+    drawer: false
   }),
   computed: {
     appBar() {
@@ -116,8 +116,8 @@ export default {
       return breakpoint === "xs"
         ? { depress: false, text: true, width: "", color: "text" }
         : { depress: true, text: false, width: "162", color: "accent" };
-    },
-  },
+    }
+  }
 };
 </script>
 

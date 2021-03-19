@@ -81,8 +81,8 @@ export default {
     icons() {
       const breakpoint = this.$vuetify.breakpoint.name;
       return breakpoint === "xs" ? { size: 32 } : { size: 40 };
-    },
-  },
+    }
+  }
 };
 </script>
 

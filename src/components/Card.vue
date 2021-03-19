@@ -29,11 +29,11 @@ export default {
     titleCard() {
       const breakpoint = this.$vuetify.breakpoint.name;
       return breakpoint === "xs" ? "tittle-bottom" : "tittle-top";
-    },
+    }
   },
   props: {
-    padawan: Object,
-  },
+    padawan: Object
+  }
 };
 </script>
 

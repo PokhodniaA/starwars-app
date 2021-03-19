@@ -41,6 +41,7 @@ export default {
         min: null,
         range: [],
       },
+      sort: "default",
     },
   }),
   computed: {
@@ -62,6 +63,24 @@ export default {
         const heightFilter =
           padawan.height <= maxHeight && padawan.height >= minHeight;
         const ageFilter = birthYear <= maxAge && birthYear >= minAge;
+
+        this.$router
+          .replace({
+            name: "Main",
+            query: {
+              color_eyes: eyes,
+              height_min: minHeight,
+              height_max: maxHeight,
+              age_min: minAge,
+              age_max: maxAge,
+              sort_by: this.filter.sort,
+            },
+          })
+          .catch((error) => {
+            if (error.name != "NavigationDuplicated") {
+              throw error;
+            }
+          });
 
         return eyesFilter && heightFilter && ageFilter;
       });

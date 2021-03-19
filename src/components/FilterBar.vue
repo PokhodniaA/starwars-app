@@ -177,6 +177,8 @@ export default {
         const padawanB = parseInt(b[sort]) || 0;
         return padawanA - padawanB;
       });
+
+      this.filter.sort = sort;
     },
   },
   computed: {

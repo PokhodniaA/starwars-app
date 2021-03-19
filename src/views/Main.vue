@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import Navbar from "./Navbar.vue";
-import Cards from "./Cards";
-import Footer from "./Footer.vue";
+import Navbar from "../components/Navbar.vue";
+import Cards from "../components/Cards.vue";
+import Footer from "../components/Footer.vue";
 
 export default {
   data: () => ({
@@ -42,5 +42,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
