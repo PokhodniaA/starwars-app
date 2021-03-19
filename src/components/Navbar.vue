@@ -14,7 +14,7 @@
 
           <v-spacer></v-spacer>
 
-          <v-menu offset-y>
+          <v-menu offset-y transition="slide-y-transition">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
                 text

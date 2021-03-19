@@ -5,6 +5,7 @@
     <v-main v-if="padawans.length">
       <Cards :padawans="padawans" />
     </v-main>
+    <v-skeleton-loader v-else type="image"></v-skeleton-loader>
 
     <Footer />
   </div>

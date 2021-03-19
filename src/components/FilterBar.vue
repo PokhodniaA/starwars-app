@@ -2,7 +2,7 @@
   <v-row class="filters">
     <!-- Eye color -->
 
-    <v-menu offset-y>
+    <v-menu offset-y left transition="slide-y-transition">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           text
@@ -15,7 +15,7 @@
         </v-btn>
       </template>
 
-      <v-list width="101">
+      <v-list width="101" transition="slide-y-transition">
         <v-list-item
           v-for="(color, index) in getEyesColor"
           :key="index"
@@ -30,7 +30,13 @@
 
     <!-- Height -->
 
-    <v-menu offset-y :close-on-content-click="false">
+    <v-menu
+      offset-y
+      left
+      nudge-right="84"
+      :close-on-content-click="false"
+      transition="slide-y-transition"
+    >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           text
@@ -74,7 +80,13 @@
 
     <!-- Age -->
 
-    <v-menu offset-y :close-on-content-click="false">
+    <v-menu
+      offset-y
+      left
+      nudge-right="84"
+      :close-on-content-click="false"
+      transition="slide-y-transition"
+    >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           text
@@ -120,7 +132,7 @@
 
     <!-- Sort by -->
 
-    <v-menu offset-y>
+    <v-menu offset-y transition="slide-y-transition">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           text
@@ -218,12 +230,6 @@ export default {
 }
 
 .v-menu__content {
-  //   margin-left: -16px;
-
   box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.04) !important;
-
-  &::before {
-    display: none;
-  }
 }
 </style>
