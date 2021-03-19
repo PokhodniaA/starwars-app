@@ -15,7 +15,7 @@
         </v-btn>
       </template>
 
-      <v-list width="101" transition="slide-y-transition">
+      <v-list width="101">
         <v-list-item
           v-for="(color, index) in getEyesColor"
           :key="index"
@@ -145,9 +145,13 @@
         </v-btn>
       </template>
 
-      <v-list>
-        <v-list-item v-for="(lang, index) in [1, 2, 3]" :key="index">
-          <v-list-item-title>{{ lang }}</v-list-item-title>
+      <v-list width="101">
+        <v-list-item
+          v-for="(sort, index) in sortBy"
+          :key="index"
+          @click="sortPadawans(sort)"
+        >
+          <v-list-item-title>{{ sort }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -156,11 +160,23 @@
 
 <script>
 export default {
+  data: () => ({
+    sortBy: ["age", "mass", "height"],
+  }),
   methods: {
     filterByColor(color) {
       const filterColor = this.filter.eyes;
 
       this.filter.eyes = filterColor == color ? "" : color;
+    },
+    sortPadawans(sort) {
+      if (sort == "age") sort = "birth_year";
+
+      this.padawans.sort((a, b) => {
+        const padawanA = parseInt(a[sort]) || 0;
+        const padawanB = parseInt(b[sort]) || 0;
+        return padawanA - padawanB;
+      });
     },
   },
   computed: {

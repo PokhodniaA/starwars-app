@@ -9,7 +9,7 @@
 
     <!-- Cards -->
 
-    <v-row class="mt-12">
+    <transition-group name="cards" tag="div" class="row mt-12">
       <v-col
         cols="12"
         md="6"
@@ -19,7 +19,7 @@
       >
         <Card :padawan="padawan" />
       </v-col>
-    </v-row>
+    </transition-group>
   </v-container>
 </template>
 
@@ -104,5 +104,12 @@ export default {
     padding: 0 16px;
     margin-top: 24px;
   }
+}
+
+// Animations
+
+.cards-move {
+  transition: 0.2s ease-in-out;
+  opacity: 0.8;
 }
 </style>
