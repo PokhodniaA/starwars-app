@@ -159,7 +159,6 @@ export default {
     font-size: 14px;
 
     &.sm {
-      margin-right: 32px;
       letter-spacing: 0;
     }
 

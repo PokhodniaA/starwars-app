@@ -7,15 +7,14 @@
         <!-- First row -->
 
         <!-- Поправить margin px -->
-        <v-row align="start" class="mt-3 mt-sm-9 flex-column flex-sm-row">
+        <v-row align="start" class="mt-3 mt-sm-6 flex-column flex-sm-row">
           <!-- Title -->
 
-          <v-app-bar-title>
+          <v-app-bar-title class="footer__title" :class="xs">
             <img
               src="@/assets/icons/StarWars.svg"
               alt="Star Wars"
               :width="logo.width"
-              class="footer__title"
             />
           </v-app-bar-title>
 
@@ -23,7 +22,7 @@
 
           <!-- Buttons -->
 
-          <div class="footer__buttons">
+          <div class="footer__buttons" :class="sm">
             <v-btn
               depressed
               class="px-0 mr-3"
@@ -73,6 +72,8 @@
 </template>
 
 <script>
+import stylesGetters from "../mixins/stylesGetters";
+
 export default {
   computed: {
     footerHeight() {
@@ -88,17 +89,18 @@ export default {
       return breakpoint === "xs" ? { size: 32 } : { size: 40 };
     },
   },
+  mixins: [stylesGetters],
 };
 </script>
 
 <style lang="scss" scoped>
 .footer {
   #reserved {
-    letter-spacing: -0.2px; //xs
+    letter-spacing: -0.2px;
   }
 
   #privacy {
-    letter-spacing: 0.5px; //xs
+    letter-spacing: 0.5px;
   }
 
   &__main {
@@ -112,11 +114,17 @@ export default {
   }
 
   &__title {
-    margin-top: 2px; //xs
+    &.xs {
+      margin-top: 2px;
+    }
   }
 
   &__buttons {
     margin-top: 14px;
+
+    &.sm {
+      margin-top: 0;
+    }
   }
 
   &__text {
@@ -124,7 +132,7 @@ export default {
   }
 
   &__second-row {
-    margin-bottom: 15px; //xs
+    margin-bottom: 15px;
   }
 }
 </style>
