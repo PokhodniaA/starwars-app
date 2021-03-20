@@ -15,6 +15,7 @@
               src="@/assets/icons/StarWars.svg"
               alt="Star Wars"
               :width="logo.width"
+              class="footer__title"
             />
           </v-app-bar-title>
 
@@ -22,10 +23,10 @@
 
           <!-- Buttons -->
 
-          <div class="mt-5 mt-sm-0">
+          <div class="footer__buttons">
             <v-btn
               depressed
-              class="px-0 mr-4"
+              class="px-0 mr-3"
               color="accent"
               :width="icons.size"
               :height="icons.size"
@@ -49,10 +50,11 @@
 
         <!-- Second row -->
 
-        <v-row align="end" class="mb-4">
+        <v-row align="end" class="footer__second-row">
           <span
             color="text"
             class="footer__text font-weight-thin text-capitalize"
+            id="reserved"
             >All rights Reserved.</span
           >
 
@@ -61,6 +63,7 @@
           <span
             color="text"
             class="footer__text font-weight-thin text-capitalize"
+            id="privacy"
             >Privacy Policy</span
           >
         </v-row>
@@ -90,6 +93,14 @@ export default {
 
 <style lang="scss" scoped>
 .footer {
+  #reserved {
+    letter-spacing: -0.2px; //xs
+  }
+
+  #privacy {
+    letter-spacing: 0.5px; //xs
+  }
+
   &__main {
     padding-left: 18px;
     padding-right: 18px;
@@ -100,8 +111,20 @@ export default {
     padding-bottom: 0;
   }
 
+  &__title {
+    margin-top: 2px; //xs
+  }
+
+  &__buttons {
+    margin-top: 14px;
+  }
+
   &__text {
     font-size: 14px;
+  }
+
+  &__second-row {
+    margin-bottom: 15px; //xs
   }
 }
 </style>

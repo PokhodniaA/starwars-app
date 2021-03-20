@@ -1,12 +1,12 @@
 <template>
-  <nav class="navbar" app>
+  <nav class="navbar" :class="sm" app>
     <!-- Убрать пэдинги боковые-->
     <v-app-bar flat :color="appBar.color" :height="appBar.height">
       <v-container>
         <v-row align="center">
           <!-- Title -->
 
-          <v-app-bar-title>
+          <v-app-bar-title class="navbar__title" :class="sm">
             <img
               src="@/assets/icons/StarWars.svg"
               alt="Star Wars"
@@ -24,7 +24,8 @@
                 width="35"
                 v-on="on"
                 v-bind="attrs"
-                class="mr-14 navbar__buttons text-capitalize font-weight-regular d-none d-sm-flex"
+                class="navbar__buttons text-capitalize font-weight-regular d-none d-sm-flex"
+                :class="sm"
               >
                 <span color="text" class="text-capitalize">{{
                   currentLang.title
@@ -48,7 +49,8 @@
           <v-btn
             text
             width="35"
-            class="navbar__buttons mr-11 text-none font-weight-regular d-none d-sm-flex"
+            class="navbar__buttons text-none font-weight-regular d-none d-sm-flex"
+            :class="sm"
             >Log in</v-btn
           >
           <!-- Sign up -->
@@ -60,6 +62,7 @@
             height="48"
             :color="singInBtn.color"
             class="navbar__buttons text-none font-weight-regular"
+            :class="[sm, signUp]"
             >Sign up</v-btn
           >
           <!-- xs Nav icon -->
@@ -67,6 +70,7 @@
           <v-app-bar-nav-icon
             @click="drawer = !drawer"
             class="navbar__nav-icon d-flex d-sm-none"
+            :class="xs"
             ><img src="@/assets/icons/menu.svg" alt="menu" />
           </v-app-bar-nav-icon>
         </v-row>
@@ -102,6 +106,8 @@
 </template>
 
 <script>
+import stylesGetters from "../mixins/stylesGetters";
+
 export default {
   data: () => ({
     languages: [{ title: "en" }, { title: "ru" }, { title: "ua" }],
@@ -115,6 +121,10 @@ export default {
         ? { color: "primary", height: 62 }
         : { color: "secondary", height: 80 };
     },
+    signUp() {
+      const breakpoint = this.$vuetify.breakpoint.name;
+      return breakpoint === "xs" ? "sign-up" : "";
+    },
     logo() {
       const breakpoint = this.$vuetify.breakpoint.name;
       return breakpoint === "xs" ? { width: "82px" } : { width: "" };
@@ -126,18 +136,49 @@ export default {
         : { depress: true, text: false, width: "162", color: "accent" };
     },
   },
+  mixins: [stylesGetters],
 };
 </script>
 
 <style lang="scss" scoped>
 .navbar {
+  padding-top: 3px;
+
+  &.sm {
+    padding-top: 0;
+  }
+
+  &__title {
+    &.sm {
+      margin-right: 2px;
+      margin-top: 3px;
+    }
+  }
+
   &__buttons {
     font-size: 14px;
+
+    &.sm {
+      margin-right: 32px;
+      letter-spacing: 0;
+    }
+
+    &.sign-up {
+      margin-right: 28px;
+      margin-bottom: 5px;
+
+      letter-spacing: 0;
+    }
   }
 
   &__nav-icon {
     width: 36px !important;
     height: 36px !important;
+
+    &.xs {
+      margin: -2px;
+      margin-bottom: 3px;
+    }
   }
 }
 

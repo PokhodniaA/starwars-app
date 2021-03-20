@@ -54,7 +54,7 @@ export default {
         .replace({
           name: "Main",
           query: {
-            color_eyes: eyes,
+            color_eyes: eyes || "none",
             height_min: minHeight,
             height_max: maxHeight,
             age_min: minAge,
