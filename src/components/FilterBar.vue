@@ -8,7 +8,7 @@
           text
           v-on="on"
           v-bind="attrs"
-          class="filters__button mr-14 px-0 text-capitalize font-weight-regular"
+          class="filters__button mr-6 mr-sm-14 px-0 text-capitalize font-weight-regular"
         >
           <span color="text" class="text-none">Eye color</span>
           <v-icon color="text" size="14">mdi-chevron-down</v-icon>
@@ -42,7 +42,7 @@
           text
           v-on="on"
           v-bind="attrs"
-          class="filters__button mr-14 px-0 navbar__buttons text-capitalize font-weight-regular"
+          class="filters__button mr-6 mr-sm-14 px-0 navbar__buttons text-capitalize font-weight-regular"
         >
           <span color="text" class="text-none">Height</span>
           <v-icon color="text" size="14">mdi-chevron-down</v-icon>
@@ -139,9 +139,18 @@
           v-on="on"
           v-bind="attrs"
           class="filters__button px-0 navbar__buttons text-capitalize font-weight-regular"
+          min-width="26"
         >
-          <span color="text" class="text-none">Sort by</span>
-          <v-icon color="text" size="14">mdi-chevron-down</v-icon>
+          <span color="text" class="text-none d-none d-sm-flex">Sort by</span>
+          <v-icon color="text" size="14" class="d-none d-sm-flex"
+            >mdi-chevron-down</v-icon
+          >
+          <v-img
+            src="@/assets/icons/clarity_sort-by-line.svg"
+            alt="Sort"
+            class="d-flex d-sm-none"
+            position="center top"
+          />
         </v-btn>
       </template>
 

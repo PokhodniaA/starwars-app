@@ -1,19 +1,23 @@
 <template>
-  <v-container class="cards mt-0">
+  <v-container class="cards mt-0 py-0 px-4 px-sm-3">
     <!-- Поменять размер текста -->
-    <h4 class="text-h4 mt-13">Cards</h4>
+    <h4 class="text-h5 text-sm-h4 mt-10 mt-sm-13">People</h4>
 
     <!-- Toolbar -->
 
-    <FilterBar class="cards__toolbar" :filter="filter" :padawans="padawans" />
+    <FilterBar
+      class="cards__toolbar mt-4 mt-sm-6"
+      :filter="filter"
+      :padawans="padawans"
+    />
 
     <!-- Cards -->
 
-    <transition-group name="cards" tag="div" class="row mt-12">
+    <transition-group name="cards" tag="div" class="row mt-6 mt-sm-12">
       <v-col
         cols="12"
         md="6"
-        class="pa-2"
+        class="px-4 pt-0 pb-2 pa-sm-2"
         v-for="padawan in filtredPadawans"
         :key="padawan.name"
       >

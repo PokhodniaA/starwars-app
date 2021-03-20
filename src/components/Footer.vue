@@ -1,6 +1,6 @@
 <template>
-  <footer class="footer">
-    <v-footer app absolute :height="footerHeight">
+  <div class="footer">
+    <v-footer app absolute :height="footerHeight" class="footer__footer">
       <v-container
         class="footer__container d-flex flex-column justify-space-between"
       >
@@ -64,7 +64,7 @@
         </v-row>
       </v-container>
     </v-footer>
-  </footer>
+  </div>
 </template>
 
 <script>
@@ -81,13 +81,18 @@ export default {
     icons() {
       const breakpoint = this.$vuetify.breakpoint.name;
       return breakpoint === "xs" ? { size: 32 } : { size: 40 };
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .footer {
+  &__footer {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
   &__container {
     height: 100%;
     padding-bottom: 0;

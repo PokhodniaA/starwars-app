@@ -58,7 +58,9 @@
             >Sign up</v-btn
           >
 
-          <v-app-bar-nav-icon @click="drawer = !drawer" class="d-flex d-sm-none"
+          <v-app-bar-nav-icon
+            @click="drawer = !drawer"
+            class="navbar__nav-icon d-flex d-sm-none"
             ><img src="@/assets/icons/menu.svg" alt="menu" />
           </v-app-bar-nav-icon>
         </v-row>
@@ -97,12 +99,11 @@ export default {
   data: () => ({
     languages: [{ title: "en" }, { title: "ru" }, { title: "ua" }],
     currentLang: { title: "en" },
-    drawer: false
+    drawer: false,
   }),
   computed: {
     appBar() {
       const breakpoint = this.$vuetify.breakpoint.name;
-      console.log(this.$vuetify);
       return breakpoint === "xs"
         ? { color: "primary", height: 62 }
         : { color: "secondary", height: 80 };
@@ -116,8 +117,8 @@ export default {
       return breakpoint === "xs"
         ? { depress: false, text: true, width: "", color: "text" }
         : { depress: true, text: false, width: "162", color: "accent" };
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -125,6 +126,11 @@ export default {
 .navbar {
   &__buttons {
     font-size: 14px;
+  }
+
+  &__nav-icon {
+    width: 36px !important;
+    height: 36px !important;
   }
 }
 

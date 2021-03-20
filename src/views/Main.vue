@@ -7,7 +7,7 @@
     </v-main>
     <v-skeleton-loader v-else type="image"></v-skeleton-loader>
 
-    <Footer />
+    <Footer :class="marginFooter" />
   </div>
 </template>
 
@@ -20,7 +20,12 @@ export default {
   data: () => ({
     padawans: [],
   }),
-  methods: {},
+  computed: {
+    marginFooter() {
+      const breakpoint = this.$vuetify.breakpoint.name;
+      return breakpoint === "xs" ? "mt-footer-xs" : "mt-footer-sm";
+    },
+  },
   components: {
     Navbar,
     Footer,
@@ -42,4 +47,18 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.main {
+  &__footer {
+    margin-top: 112px;
+  }
+}
+
+.mt-footer-sm {
+  margin-top: 112px;
+}
+
+.mt-footer-xs {
+  margin-top: 80px;
+}
+</style>
