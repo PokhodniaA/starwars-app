@@ -8,6 +8,10 @@
     <v-skeleton-loader v-else type="image"></v-skeleton-loader>
 
     <Footer :class="marginFooter" />
+
+    <v-snackbar v-model="snackbar.show" :timeout="2000">{{
+      snackbar.text
+    }}</v-snackbar>
   </div>
 </template>
 
@@ -15,6 +19,8 @@
 import Navbar from "../components/Navbar.vue";
 import Cards from "../components/Cards.vue";
 import Footer from "../components/Footer.vue";
+
+import snackbar from "../mixins/snackbar.js";
 
 export default {
   data: () => ({
@@ -31,6 +37,7 @@ export default {
     Footer,
     Cards,
   },
+  mixins: [snackbar],
   async mounted() {
     try {
       const padawans = await (
@@ -38,22 +45,14 @@ export default {
       ).json();
 
       this.padawans = padawans.results;
-
-      console.log(this.padawans, "padawans");
     } catch (error) {
-      alert("Sorry, server don't work =(");
+      this.showSnackbar("Sorry, server don't work =(");
     }
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.main {
-  &__footer {
-    margin-top: 112px;
-  }
-}
-
 .mt-footer-sm {
   margin-top: 112px;
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <v-footer app absolute :height="footerHeight" class="footer__footer">
+    <v-footer app absolute :height="footerHeight" class="footer__main">
       <v-container
         class="footer__container d-flex flex-column justify-space-between"
       >
@@ -8,6 +8,8 @@
 
         <!-- Поправить margin px -->
         <v-row align="start" class="mt-3 mt-sm-9 flex-column flex-sm-row">
+          <!-- Title -->
+
           <v-app-bar-title>
             <img
               src="@/assets/icons/StarWars.svg"
@@ -88,7 +90,7 @@ export default {
 
 <style lang="scss" scoped>
 .footer {
-  &__footer {
+  &__main {
     padding-left: 18px;
     padding-right: 18px;
   }

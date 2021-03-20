@@ -48,19 +48,44 @@ export default {
       sort: "default",
     },
   }),
+  methods: {
+    pushQuery(eyes, minHeight, maxHeight, minAge, maxAge) {
+      this.$router
+        .replace({
+          name: "Main",
+          query: {
+            color_eyes: eyes,
+            height_min: minHeight,
+            height_max: maxHeight,
+            age_min: minAge,
+            age_max: maxAge,
+            sort_by: this.filter.sort,
+          },
+        })
+        .catch((error) => {
+          if (error.name != "NavigationDuplicated") {
+            throw error;
+          }
+        });
+    },
+  },
   computed: {
     filtredPadawans() {
+      // Filtering params by filter data.
       const eyes = this.filter.eyes;
       const height = this.filter.height;
       const age = this.filter.age;
 
+      // Heights
       const maxHeight = height.range[1],
         minHeight = height.range[0];
 
+      // Ages
       const maxAge = age.range[1],
         minAge = age.range[0];
 
-      return this.padawans.filter((padawan) => {
+      // Filtering
+      const filteredData = this.padawans.filter((padawan) => {
         const birthYear = parseInt(padawan.birth_year) || 0;
 
         const eyesFilter = eyes ? padawan.eye_color == eyes : true;
@@ -68,26 +93,13 @@ export default {
           padawan.height <= maxHeight && padawan.height >= minHeight;
         const ageFilter = birthYear <= maxAge && birthYear >= minAge;
 
-        this.$router
-          .replace({
-            name: "Main",
-            query: {
-              color_eyes: eyes,
-              height_min: minHeight,
-              height_max: maxHeight,
-              age_min: minAge,
-              age_max: maxAge,
-              sort_by: this.filter.sort,
-            },
-          })
-          .catch((error) => {
-            if (error.name != "NavigationDuplicated") {
-              throw error;
-            }
-          });
-
         return eyesFilter && heightFilter && ageFilter;
       });
+
+      // Push query
+      this.pushQuery(eyes, minHeight, maxHeight, minAge, maxAge);
+
+      return filteredData;
     },
   },
   props: {
@@ -95,6 +107,7 @@ export default {
   },
   components: { Card, FilterBar },
   created() {
+    // Fill filter data fields
     const height = this.filter.height;
     const age = this.filter.age;
 
@@ -123,10 +136,12 @@ export default {
 
 <style lang="scss" scoped>
 .cards {
-  &__toolbar {
-    padding: 0 16px;
-    margin-top: 24px;
-  }
+  // Посметреть какие отступы оставить, тут или в классе
+
+  // &__toolbar {
+  //   padding: 0 16px;
+  //   margin-top: 24px;
+  // }
 }
 
 // Animations

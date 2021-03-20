@@ -4,6 +4,8 @@
     <v-app-bar flat :color="appBar.color" :height="appBar.height">
       <v-container>
         <v-row align="center">
+          <!-- Title -->
+
           <v-app-bar-title>
             <img
               src="@/assets/icons/StarWars.svg"
@@ -13,6 +15,7 @@
           </v-app-bar-title>
 
           <v-spacer></v-spacer>
+          <!-- Language -->
 
           <v-menu offset-y transition="slide-y-transition">
             <template v-slot:activator="{ on, attrs }">
@@ -40,6 +43,7 @@
               </v-list-item>
             </v-list>
           </v-menu>
+          <!-- Log in -->
 
           <v-btn
             text
@@ -47,6 +51,7 @@
             class="navbar__buttons mr-11 text-none font-weight-regular d-none d-sm-flex"
             >Log in</v-btn
           >
+          <!-- Sign up -->
 
           <v-btn
             :depressed="singInBtn.depress"
@@ -57,6 +62,7 @@
             class="navbar__buttons text-none font-weight-regular"
             >Sign up</v-btn
           >
+          <!-- xs Nav icon -->
 
           <v-app-bar-nav-icon
             @click="drawer = !drawer"
@@ -67,6 +73,7 @@
       </v-container>
     </v-app-bar>
 
+    <!-- Drawer -->
     <v-navigation-drawer
       app
       fixed

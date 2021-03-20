@@ -8,7 +8,7 @@
           text
           v-on="on"
           v-bind="attrs"
-          class="filters__button mr-6 mr-sm-14 px-0 text-capitalize font-weight-regular"
+          class="mr-6 mr-sm-14 px-0 text-capitalize font-weight-regular"
         >
           <span color="text" class="text-none">Eye color</span>
           <v-icon color="text" size="14">mdi-chevron-down</v-icon>
@@ -42,7 +42,7 @@
           text
           v-on="on"
           v-bind="attrs"
-          class="filters__button mr-6 mr-sm-14 px-0 navbar__buttons text-capitalize font-weight-regular"
+          class="mr-6 mr-sm-14 px-0 text-capitalize font-weight-regular"
         >
           <span color="text" class="text-none">Height</span>
           <v-icon color="text" size="14">mdi-chevron-down</v-icon>
@@ -50,15 +50,15 @@
       </template>
 
       <v-card flat width="249" height="138">
-        <div class="filters__inputRow d-flex justify-space-between">
+        <div class="filters__input-row d-flex justify-space-between">
           <input
             type="number"
-            class="filters__filterInput"
+            class="filters__filter-input"
             v-model.lazy="filter.height.range[0]"
           />
           <input
             type="number"
-            class="filters__filterInput"
+            class="filters__filter-input"
             v-model.lazy="filter.height.range[1]"
           />
         </div>
@@ -92,7 +92,7 @@
           text
           v-on="on"
           v-bind="attrs"
-          class="filters__button px-0 navbar__buttons text-capitalize font-weight-regular"
+          class="px-0 text-capitalize font-weight-regular"
         >
           <span color="text" class="text-none">Age</span>
           <v-icon color="text" size="14">mdi-chevron-down</v-icon>
@@ -100,15 +100,15 @@
       </template>
 
       <v-card flat width="249" height="138">
-        <div class="filters__inputRow d-flex justify-space-between">
+        <div class="filters__input-row d-flex justify-space-between">
           <input
             type="number"
-            class="filters__filterInput"
+            class="filters__filter-input"
             v-model.lazy="filter.age.range[0]"
           />
           <input
             type="number"
-            class="filters__filterInput"
+            class="filters__filter-input"
             v-model.lazy="filter.age.range[1]"
           />
         </div>
@@ -138,7 +138,7 @@
           text
           v-on="on"
           v-bind="attrs"
-          class="filters__button px-0 navbar__buttons text-capitalize font-weight-regular"
+          class="px-0 text-capitalize font-weight-regular"
           min-width="26"
         >
           <span color="text" class="text-none d-none d-sm-flex">Sort by</span>
@@ -175,7 +175,7 @@ export default {
   methods: {
     filterByColor(color) {
       const filterColor = this.filter.eyes;
-
+      // Applt or remove eyes color filter
       this.filter.eyes = filterColor == color ? "" : color;
     },
     sortPadawans(sort) {
@@ -206,18 +206,12 @@ export default {
 
 <style lang="scss" scoped>
 .filters {
-  &__button {
-    &::before {
-      background: none;
-    }
-  }
-
   &__item {
     font-size: 14px;
     font-weight: 100;
   }
 
-  &__inputRow {
+  &__input-row {
     padding: 20px 20px 0;
   }
 
@@ -232,10 +226,11 @@ export default {
     overflow: hidden;
   }
 
-  &__filterInput {
+  &__filter-input {
     width: 100px;
     height: 42px;
     padding: 8px 12px;
+
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 6px;
 
