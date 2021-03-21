@@ -225,6 +225,7 @@ export default {
   // buttons
   &__eye-btn {
     margin-right: 17px;
+
     &.sm {
       margin-right: 35px;
     }

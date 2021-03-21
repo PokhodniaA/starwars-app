@@ -1,6 +1,5 @@
 <template>
-  <v-container class="cards mt-0 py-0 px-4 px-sm-0">
-    <!-- Поменять размер текста -->
+  <v-container class="cards mt-0 py-0 px-4 px-sm-5 px-md-0">
     <h4 class="cards__title" :class="sm">People</h4>
 
     <!-- Toolbar -->
@@ -142,13 +141,7 @@ export default {
 
 <style lang="scss" scoped>
 .cards {
-  &__toolbar {
-    margin-top: 0;
-
-    &.sm {
-      margin-top: 13px;
-    }
-  }
+  // Title
 
   &__title {
     margin-top: 32px;
@@ -159,6 +152,18 @@ export default {
       font-size: 32px;
     }
   }
+
+  // Toolbar
+
+  &__toolbar {
+    margin-top: 0;
+
+    &.sm {
+      margin-top: 13px;
+    }
+  }
+
+  // Cards
 
   &__cards {
     padding: 0 16px 8px;

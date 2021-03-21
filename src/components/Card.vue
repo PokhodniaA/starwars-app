@@ -38,9 +38,13 @@ export default {
 
 <style lang="scss" scoped>
 .card {
+  // Image
+
   &__img {
     position: relative;
   }
+
+  // Text
 
   &__title {
     position: absolute;

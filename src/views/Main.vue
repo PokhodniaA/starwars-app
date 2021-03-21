@@ -7,7 +7,7 @@
     </v-main>
     <v-skeleton-loader v-else type="image"></v-skeleton-loader>
 
-    <Footer :class="marginFooter" />
+    <Footer class="mt-footer" :class="sm" />
 
     <v-snackbar v-model="snackbar.show" :timeout="2000">{{
       snackbar.text
@@ -21,23 +21,20 @@ import Cards from "../components/Cards.vue";
 import Footer from "../components/Footer.vue";
 
 import snackbar from "../mixins/snackbar.js";
+import stylesGetters from "../mixins/stylesGetters";
 
 export default {
   data: () => ({
     padawans: [],
   }),
-  computed: {
-    marginFooter() {
-      const breakpoint = this.$vuetify.breakpoint.name;
-      return breakpoint === "xs" ? "mt-footer-xs" : "mt-footer-sm";
-    },
-  },
+
   components: {
     Navbar,
     Footer,
     Cards,
   },
-  mixins: [snackbar],
+  mixins: [snackbar, stylesGetters],
+  // get array of padawans
   async mounted() {
     try {
       const padawans = await (
@@ -53,11 +50,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.mt-footer-sm {
-  margin-top: 112px;
-}
-
-.mt-footer-xs {
+.mt-footer {
   margin-top: 80px;
+
+  &.sm {
+    margin-top: 112px;
+  }
 }
 </style>

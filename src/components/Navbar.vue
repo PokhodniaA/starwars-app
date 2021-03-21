@@ -1,6 +1,5 @@
 <template>
   <nav class="navbar" :class="sm" app>
-    <!-- Убрать пэдинги боковые-->
     <v-app-bar flat :color="appBar.color" :height="appBar.height">
       <v-container>
         <v-row align="center">
@@ -24,7 +23,7 @@
                 width="35"
                 v-on="on"
                 v-bind="attrs"
-                class="navbar__buttons text-capitalize font-weight-regular d-none d-sm-flex"
+                class="navbar__buttons regular-btn text-capitalize font-weight-regular d-none d-sm-flex"
                 :class="sm"
               >
                 <span color="text" class="text-capitalize">{{
@@ -49,7 +48,7 @@
           <v-btn
             text
             width="35"
-            class="navbar__buttons text-none font-weight-regular d-none d-sm-flex"
+            class="navbar__buttons regular-btn text-none font-weight-regular d-none d-sm-flex"
             :class="sm"
             >Log in</v-btn
           >
@@ -142,11 +141,15 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
+  // Main
+
   padding-top: 3px;
 
   &.sm {
     padding-top: 0;
   }
+
+  // Title
 
   &__title {
     &.sm {
@@ -155,11 +158,17 @@ export default {
     }
   }
 
+  // Buttons
+
   &__buttons {
     font-size: 14px;
 
     &.sm {
       letter-spacing: 0;
+
+      &.regular-btn {
+        margin-right: 28px;
+      }
     }
 
     &.sign-up {
