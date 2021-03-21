@@ -6,7 +6,6 @@
       >
         <!-- First row -->
 
-        <!-- Поправить margin px -->
         <v-row align="start" class="mt-3 mt-sm-6 flex-column flex-sm-row">
           <!-- Title -->
 
@@ -104,8 +103,8 @@ export default {
   }
 
   &__main {
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   &__container {

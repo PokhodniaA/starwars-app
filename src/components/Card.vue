@@ -6,12 +6,12 @@
       class="card__img"
       :src="imageSrc"
     >
-      <div class="card__title primary--text" :class="titleCard">
-        <p class="card__birth mb-4">{{ padawan.birth_year }}</p>
-        <p class="card__name mb-2">{{ padawan.name }}</p>
-        <p class="card__data font-weight-thin">
-          <span class="mr-6">Eye color: {{ padawan.eye_color }}</span>
-          <span class="mr-6">Height: {{ padawan.height }}</span>
+      <div class="card__title primary--text" :class="sm">
+        <p class="card__birth">{{ padawan.birth_year }}</p>
+        <p class="card__name" :class="sm">{{ padawan.name }}</p>
+        <p class="font-weight-thin">
+          <span class="card__data">Eye color: {{ padawan.eye_color }}</span>
+          <span class="card__data">Height: {{ padawan.height }}</span>
           <span>Mass: {{ padawan.mass }}</span>
         </p>
       </div>
@@ -20,20 +20,19 @@
 </template>
 
 <script>
+import stylesGetters from "../mixins/stylesGetters";
+
 export default {
   computed: {
     imageSrc() {
       const padawan = this.padawan.name;
       return require(`@/assets/images/${padawan}.jpg`);
     },
-    titleCard() {
-      const breakpoint = this.$vuetify.breakpoint.name;
-      return breakpoint === "xs" ? "tittle-bottom" : "tittle-top";
-    }
   },
   props: {
-    padawan: Object
-  }
+    padawan: Object,
+  },
+  mixins: [stylesGetters],
 };
 </script>
 
@@ -45,25 +44,33 @@ export default {
 
   &__title {
     position: absolute;
+    bottom: 16px;
+    left: 22px;
+
     font-size: 14px;
+
+    &.sm {
+      top: 21px;
+      left: 24px;
+    }
   }
 
   &__birth {
+    margin-bottom: 14px;
     opacity: 0.8;
   }
 
   &__name {
+    margin-bottom: 9px;
     font-size: 24px;
+    &.sm {
+      margin-bottom: 6px;
+    }
   }
-}
 
-.tittle-top {
-  top: 21px;
-  left: 24px;
-}
-
-.tittle-bottom {
-  bottom: 24px;
-  left: 20px;
+  &__data {
+    margin-right: 16px;
+    letter-spacing: 0.3px;
+  }
 }
 </style>

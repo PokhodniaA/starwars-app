@@ -1,12 +1,13 @@
 <template>
-  <v-container class="cards mt-0 py-0 px-4 px-sm-3">
+  <v-container class="cards mt-0 py-0 px-4 px-sm-0">
     <!-- Поменять размер текста -->
-    <h4 class="text-h5 text-sm-h4 mt-10 mt-sm-13">People</h4>
+    <h4 class="cards__title" :class="sm">People</h4>
 
     <!-- Toolbar -->
 
     <FilterBar
-      class="cards__toolbar mt-4 mt-sm-6"
+      class="cards__toolbar"
+      :class="sm"
       :filter="filter"
       :padawans="padawans"
     />
@@ -17,7 +18,8 @@
       <v-col
         cols="12"
         md="6"
-        class="px-4 pt-0 pb-2 pa-sm-2"
+        class="cards__cards"
+        :class="sm"
         v-for="padawan in filtredPadawans"
         :key="padawan.name"
       >
@@ -30,6 +32,8 @@
 <script>
 import Card from "./Card.vue";
 import FilterBar from "./FilterBar.vue";
+
+import stylesGetters from "../mixins/stylesGetters";
 
 export default {
   data: () => ({
@@ -106,6 +110,8 @@ export default {
     padawans: Array,
   },
   components: { Card, FilterBar },
+  mixins: [stylesGetters],
+
   created() {
     // Fill filter data fields
     const height = this.filter.height;
@@ -136,12 +142,37 @@ export default {
 
 <style lang="scss" scoped>
 .cards {
-  // Посметреть какие отступы оставить, тут или в классе
+  &__toolbar {
+    margin-top: 0;
 
-  // &__toolbar {
-  //   padding: 0 16px;
-  //   margin-top: 24px;
-  // }
+    &.sm {
+      margin-top: 13px;
+    }
+  }
+
+  &__title {
+    margin-top: 32px;
+    font-size: 28px;
+    &.sm {
+      margin-top: 64px;
+      margin-left: 3px;
+      font-size: 32px;
+    }
+  }
+
+  &__cards {
+    padding: 0 16px 8px;
+
+    &.sm {
+      &:nth-child(odd) {
+        padding: 0 4px 8px 8px;
+      }
+
+      &:nth-child(even) {
+        padding: 0 8px 8px 4px;
+      }
+    }
+  }
 }
 
 // Animations

@@ -8,9 +8,10 @@
           text
           v-on="on"
           v-bind="attrs"
-          class="mr-6 mr-sm-14 px-0 text-capitalize font-weight-regular"
+          class="filters__eye-btn px-0 text-capitalize font-weight-regular"
+          :class="sm"
         >
-          <span color="text" class="text-none">Eye color</span>
+          <span color="text" class="filters__text text-none">Eye color</span>
           <v-icon color="text" size="14">mdi-chevron-down</v-icon>
         </v-btn>
       </template>
@@ -42,9 +43,10 @@
           text
           v-on="on"
           v-bind="attrs"
-          class="mr-6 mr-sm-14 px-0 text-capitalize font-weight-regular"
+          class="filters__height px-0 text-capitalize font-weight-regular"
+          :class="sm"
         >
-          <span color="text" class="text-none">Height</span>
+          <span color="text" class="filters__text text-none">Height</span>
           <v-icon color="text" size="14">mdi-chevron-down</v-icon>
         </v-btn>
       </template>
@@ -94,7 +96,7 @@
           v-bind="attrs"
           class="px-0 text-capitalize font-weight-regular"
         >
-          <span color="text" class="text-none">Age</span>
+          <span color="text" class="filters__text text-none">Age</span>
           <v-icon color="text" size="14">mdi-chevron-down</v-icon>
         </v-btn>
       </template>
@@ -139,9 +141,12 @@
           v-on="on"
           v-bind="attrs"
           class="px-0 text-capitalize font-weight-regular"
-          min-width="26"
+          min-width="23"
+          :height="sortHeight"
         >
-          <span color="text" class="text-none d-none d-sm-flex">Sort by</span>
+          <span color="text" class="filters__text text-none d-none d-sm-flex"
+            >Sort by</span
+          >
           <v-icon color="text" size="14" class="d-none d-sm-flex"
             >mdi-chevron-down</v-icon
           >
@@ -168,6 +173,8 @@
 </template>
 
 <script>
+import stylesGetters from "../mixins/stylesGetters";
+
 export default {
   data: () => ({
     sortBy: ["age", "mass", "height"],
@@ -175,7 +182,7 @@ export default {
   methods: {
     filterByColor(color) {
       const filterColor = this.filter.eyes;
-      // Applt or remove eyes color filter
+      // Apply or remove eyes color filter
       this.filter.eyes = filterColor == color ? "" : color;
     },
     sortPadawans(sort) {
@@ -196,16 +203,46 @@ export default {
       this.padawans.forEach((padawan) => eyes.add(padawan.eye_color));
       return eyes;
     },
+    sortHeight() {
+      const breakpoint = this.$vuetify.breakpoint.name;
+      return breakpoint === "xs" ? 32 : 35;
+    },
   },
   props: {
     padawans: Array,
     filter: Object,
   },
+  mixins: [stylesGetters],
 };
 </script>
 
 <style lang="scss" scoped>
 .filters {
+  padding: 0 13px;
+
+  // Menu
+
+  // buttons
+  &__eye-btn {
+    margin-right: 17px;
+    &.sm {
+      margin-right: 35px;
+    }
+  }
+
+  &__height {
+    margin-right: 6px;
+    &.sm {
+      margin-right: 16px;
+    }
+  }
+
+  &__text {
+    letter-spacing: 0;
+    padding-right: 5px;
+  }
+
+  // inputs
   &__item {
     font-size: 14px;
     font-weight: 100;
